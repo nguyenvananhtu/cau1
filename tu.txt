@@ -1,0 +1,100 @@
+package basic.dev;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class MainApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Nhap so phan tu cua mang: ");
+		int n = sc.nextInt();
+		int[] a = new int[n];
+		input(a);
+		print(a);
+		tinhTong(a);
+		demSoNguyenTo(a);
+		soPolinom(a);
+	}
+	
+	private static void soPolinom (int[] a) {
+		int count = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (soPolinom(a[i])) {
+				count++;
+			}
+		}
+		System.out.format("Mang co %d so polinom ", count).println();
+	}
+
+	private static void demSoNguyenTo(int[] a) {
+		// TODO Auto-generated method stub
+		int dem = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (isPrime(a[i])) {
+				dem++;
+			}
+		}
+		System.out.format("Mang co %d so nguyen to", dem);
+		System.out.println();
+	}
+	
+	public static boolean isPrime(int n) {	
+		// TODO Auto-generated method stub
+		if (n == 1 || n == 2) return true;
+		for (int i = 2; i < n; i++) {
+			if (n % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static boolean soPolinom(int n) {
+		// TODO Auto-generated method stub
+		int n1 = n;
+		int reversed = 0;
+		while (n != 0) {
+			int digit = n % 10;
+			reversed = reversed * 10 + digit;
+			n /= 10;
+			if (reversed == n1) return true;
+		}
+		return false;
+	}
+
+	private static void tinhTong(int[] a) {
+		// TODO Auto-generated method stub
+		int sum = 0;
+		for (int i = 0; i < a.length; i++) {
+			sum += a[i];
+		}
+		System.out.println("Tong cua mang = " + sum);
+	}
+
+	private static void print(int[] a) {
+		// TODO Auto-generated method stub
+		System.out.println("Mang a :");
+		for (int i = 0 ; i < a.length; i++) {
+			System.out.print(a[i] + "   ");
+		}
+		System.out.println();
+	}
+
+	private static void input(int[] a) {
+		// TODO Auto-generated method stub
+		int min = 10;
+		int max = 99;
+		for (int i = 0; i < a.length; i++) {
+			a[i] = random(min, max);
+		}
+	}
+
+	private static int random(int min, int max) {
+		// TODO Auto-generated method stub
+		Random rand = new Random();
+		return rand.nextInt(max + 1 - min) + min;
+	}
+
+}
